@@ -1,0 +1,11 @@
+{
+  "name": "mlbsurvivorgame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Adam C. MacKinnon",
+  "license": "MIT"
+}
