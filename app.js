@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mustacheExpress = require('mustache-express');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +20,7 @@ app.use(express.static('public'));
 // Set your routes here
 app.use(require('./routes/index'));
 app.use(require('./routes/login'));
+app.use(require('./routes/register'));
 app.use(require('./routes/rules'));
 
 

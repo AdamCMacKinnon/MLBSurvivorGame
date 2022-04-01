@@ -1,0 +1,28 @@
+{{> header}}
+    {{> nav}}
+
+
+    <form class="loginForm col-6 offset-3" id="loginForm" action="gamepage" method="post">
+        <div class="form-group">
+            <h1 style="text-align: center;">REGISTER</h1>
+            <label for="username">Twitter Handle</label>
+            <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+                <input name="username" type="text" class="form-control" placeholder="RMNTCBASEBALL">
+              </div>
+          </div>
+          <label for="email">Email</label>
+          <input type="email" name="email" class="form-control" placeholder="Enter Email...">
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="adminPassword" placeholder="Password">
+          </div>
+          <button type="submit" id="loginForm" class="btn btn-warning">Submit</button>
+        </form>
+
+        {{! {{#message
+            <div class="alert alert-danger col-6 offset-3" role="alert">
+                {{message}} }}
+            </div> }}
+
+{{> footer}}
