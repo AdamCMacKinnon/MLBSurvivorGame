@@ -1,0 +1,22 @@
+{{> header}}
+    {{> nav}}
+
+    <form class="loginForm col-6 offset-3" id="loginForm" action="gamepage" method="post">
+        <div class="form-group">
+            <h1 style="text-align: center;">LOGIN</h1>
+            <label for="userName">User Name</label>
+            <input type="text" class="form-control" name="userName" id="adminUsername" aria-describedby="emailHelp" placeholder="Enter Username">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="adminPassword" placeholder="Password">
+          </div>
+          <button type="submit" id="loginForm" class="btn btn-warning">Submit</button><p>Click here to <a href="/register">register</a></p>
+        </form>
+    
+        {{! {{#message
+        <div class="alert alert-danger" role="alert">
+            {{message}} }}
+        </div> }}
+
+{{> footer}}
