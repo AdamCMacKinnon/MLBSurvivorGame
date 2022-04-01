@@ -2,7 +2,7 @@ module.exports = {
   local: {
       username: 'postgres',
       password: null,
-      database: 'xxxxxxxxx',
+      database: 'survivorGame',
       host: '127.0.0.1',
       dialect: 'postgres'
   },

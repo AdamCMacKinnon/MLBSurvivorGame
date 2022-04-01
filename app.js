@@ -19,6 +19,7 @@ app.use(express.static('public'));
 // Set your routes here
 app.use(require('./routes/index'));
 app.use(require('./routes/login'));
+app.use(require('./routes/rules'));
 
 
 // Create local Server Function
