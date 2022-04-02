@@ -21,6 +21,7 @@ app.use(express.static('public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/login'));
 app.use(require('./routes/register'));
+app.use(require('./routes/gamepage'));
 app.use(require('./routes/rules'));
 
 

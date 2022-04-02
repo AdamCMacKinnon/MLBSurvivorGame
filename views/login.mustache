@@ -1,7 +1,7 @@
 {{> header}}
     {{> nav}}
 
-    <form class="loginForm col-6 offset-3" id="loginForm" action="gamepage" method="post">
+    <form class="loginForm col-6 offset-3" id="loginForm" method="post">
         <div class="form-group">
             <h1 style="text-align: center;">LOGIN</h1>
             <label for="userName">User Name</label>
@@ -14,9 +14,10 @@
           <button type="submit" id="loginForm" class="btn btn-warning">Submit</button><p>Click here to <a href="/register">register</a></p>
         </form>
     
-        {{! {{#message
+        {{#message}}
         <div class="alert alert-danger col-6 offset-3" role="alert">
-            {{message}} }}
-        </div> }}
+            {{message}}
+        </div> 
+        {{/message}}
 
 {{> footer}}
