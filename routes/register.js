@@ -10,8 +10,8 @@ router.get('/register', (req,res) => {
 });
 
 router.post('/register', async (req,res) =>{
-    let username = req.body.username
-    let email = req.body.email
+    let username = req.body.username.toLowerCase()
+    let email = req.body.email.toLowerCase()
     let password = req.body.password
 
     console.log(username, email, password)
@@ -36,12 +36,14 @@ router.post('/register', async (req,res) =>{
                 })
                 let savedUser = await user.save()
                 if (savedUser != null) {
-                    res.redirect('/')
+                    res.redirect('/thankyou')
                 } else {
                     res.render('/register', { message: "User Already Exists!"})
                 }
             }
         })
+    } else {
+        res.render('register', { message: "User Already Exists!"})
     }
 })
 
