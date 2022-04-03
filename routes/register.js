@@ -36,7 +36,7 @@ router.post('/register', async (req,res) =>{
                 })
                 let savedUser = await user.save()
                 if (savedUser != null) {
-                    res.redirect('/login')
+                    res.redirect('/')
                 } else {
                     res.render('/register', { message: "User Already Exists!"})
                 }

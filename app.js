@@ -4,8 +4,16 @@ const mustacheExpress = require('mustache-express');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const session = require('express-session');
 const PORT = process.env.PORT || 3000;
 
+
+// session data
+app.use(session({
+  secret: process.env.SECRET,
+  resave: true,
+  saveUninitialized: false
+}))
 // Establish Mustache as Views Engine and point to partials
 const VIEWS_PATH = path.join(__dirname,'/views');
 app.engine('mustache', mustacheExpress(VIEWS_PATH + '/partials','.mustache'));

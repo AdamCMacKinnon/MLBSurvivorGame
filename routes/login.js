@@ -11,17 +11,18 @@ router.get('/login', (req,res) => {
 router.post('/login', async (req,res) => {
     let username = req.body.username
     let password = req.body.password
+    console.log(username, password)
 
     let user = await models.users.findOne({
         where: {
-            username: username || null
+            username: username
         }
     })
     if (user != null) {
         bcrypt.compare(password, user.password, (error, result) => {
             if (result) {
                 if (req.session) {
-                    req.session.user = { userid: user.id }
+                    req.session.user = { userId: user.id }
                     res.redirect('/')
                 }
             } else {
