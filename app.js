@@ -4,7 +4,7 @@ const mustacheExpress = require('mustache-express');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
-const session = require('express-session');
+const session = require('cookie-session');
 const PORT = process.env.PORT || 3000;
 
 
