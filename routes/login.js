@@ -11,7 +11,6 @@ router.get('/login', (req,res) => {
 router.post('/login', async (req,res) => {
     let username = req.body.username
     let password = req.body.password
-    console.log(username, password)
 
     let user = await models.users.findOne({
         where: {
@@ -23,7 +22,7 @@ router.post('/login', async (req,res) => {
             if (result) {
                 if (req.session) {
                     req.session.user = { userId: user.id }
-                    res.redirect('/')
+                    res.redirect('/gamepage')
                 }
             } else {
                 res.render('login', { message: 'Incorrect Username or Password (1)'})

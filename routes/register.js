@@ -14,8 +14,6 @@ router.post('/register', async (req,res) =>{
     let email = req.body.email.toLowerCase()
     let password = req.body.password
 
-    console.log(username, email, password)
-
     let persistedUser = await models.users.findOne({
         where: {
             username: username,
@@ -26,7 +24,7 @@ router.post('/register', async (req,res) =>{
     if (persistedUser == null) {
         bcrypt.hash(password, SALT, async (error, hash) => {
             if (error) {
-                res.render('/register', { message: "There was an error!"})
+                res.render('register', { message: "There was an error!"})
             } else {
                 let user = models.users.build({
                     username: username,
@@ -36,9 +34,9 @@ router.post('/register', async (req,res) =>{
                 })
                 let savedUser = await user.save()
                 if (savedUser != null) {
-                    res.redirect('/thankyou')
+                    res.redirect('login')
                 } else {
-                    res.render('/register', { message: "User Already Exists!"})
+                    res.render('register', { message: "User Already Exists!"})
                 }
             }
         })
