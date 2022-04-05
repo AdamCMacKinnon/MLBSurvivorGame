@@ -22,7 +22,13 @@ router.post('/login', async (req,res) => {
             if (result) {
                 if (req.session) {
                     req.session.user = { userId: user.id }
-                    res.redirect('/gamepage')
+                    let active;
+                    if (user.isactive === true) {
+                        active = 'ACTIVE'
+                    } else {
+                        active = 'INACTIVE'
+                    }
+                    res.render('gamepage', { message: `Hello ${user.username}, you are currently ${active}` })
                 }
             } else {
                 res.render('login', { message: 'Incorrect Username or Password (1)'})

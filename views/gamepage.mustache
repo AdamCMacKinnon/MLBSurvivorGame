@@ -1,6 +1,10 @@
 {{> header}}
     {{> nav}}
 
-GAMEPAGE
+    {{#message}}
+    <div class="alert alert-warning" style="text-align: center;"role="alert" style="text-align: center;">
+        {{message}}
+    </div>
+    {{/message}}
 
 {{> footer}}
