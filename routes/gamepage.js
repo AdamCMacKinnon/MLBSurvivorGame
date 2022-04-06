@@ -12,11 +12,17 @@ router.get('/gamepage', (req,res) => {
   }
 
   if (user.isactive === true) {
-    { message: `Hello {{user.username}}, you are currently ACTIVE` }
+    res.render({ alert: `Hello {{user.username}}, you are currently ACTIVE` })
   } else {
-    { message: `Hello {{user.username}}, you are currently INACTIVE` }
+    res.render({ message: `Hello {{user.username}}, you are currently INACTIVE` })
   }
 
+})
+
+router.post('/logout', (req,res) => {
+  req.session.destroy(() => {
+    res.render('/', { message: 'you have been logged out' })
+  })
 })
 
 

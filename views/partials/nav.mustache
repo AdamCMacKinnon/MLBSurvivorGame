@@ -5,14 +5,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Profile <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="#">Game Page <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="#">Standings</a>
         <a class="nav-item nav-link" href="mailto:romanticaboutbaseball@gmail.com">Support</a>
       </div>
+      {{#authenticated}}
       <ul class="navbar-nav ml-auto">
           <li>
-            <a class="nav-item nav-link disabled" href="/login">Login</a>
+            <a class="nav-item nav-link" href="/login">Login</a>
+          </li>
+          <li>
+            <a class="nav-item nav-link" href="/">Logout</a>
           </li>
       </ul>
+      {{/authenticated}}
     </div>
   </nav>
