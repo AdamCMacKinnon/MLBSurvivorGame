@@ -58,3 +58,45 @@ body {
     padding: 25px;
     border-radius: 10%;
 }
+
+/* GAME PAGE STYLES */
+.gamePageRow {
+    background-color: lightgray;
+}
+.column {
+    float: left;
+  }
+  
+  /* Left and right column */
+  .column.side {
+    width: 25%;
+  }
+  
+  /* Middle column */
+  .column.middle {
+    width: 50%;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column.side, .column.middle {
+      width: 100%;
+    }
+  }
+
+.pickform {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(1, 73, 1);
+    color: white;
+    height: 100%;
+    border-radius: 15%;
+    padding: 20px;
+    margin-right: 5px;
+}
+
+iframe {
+    height: 100%;
+    width: 100%;
+    
+}
