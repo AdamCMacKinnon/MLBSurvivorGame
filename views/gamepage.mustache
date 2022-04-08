@@ -8,80 +8,79 @@
     {{#alert}}
     <div class="alert alert-success" style="text-align: center;"role="alert" style="text-align: center;">{{alert}}</div>
     {{/alert}}
-
-<div class="gamePagerow">
-    <div class="column side">
-        PREVIOUS PICKS
-    </div>
-    <div class="column middle">
-        MAIN FEED
-    </div>
-    <div class="column side">
-        <div class="pickform">
+    <div class="card-deck">
+        <div class="card ml-4">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Team Select</h5>
             <form action="POST">
-                <h4>SELECT YOUR TEAM:</h4>
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Week:</label>
-                    <select class="form-control" id="weekSelect" name="weekselect">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
+                    <label for="exampleFormControlSelect1">Week</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
                     </select>
-                </div>
+                  </div>
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Team:</label>
-                    <select class="form-control" id="teamSelect" name="teamselect">
-                    <option>Diamondbacks</option>
-                    <option>Braves</option>
-                    <option>Orioles</option>
-                    <option>RedSox</option>
-                    <option>Cubs</option>
-                    <option>WhiteSox</option>
-                    <option>Reds</option>
-                    <option>Guardians</option>
-                    <option>Rockies</option>
-                    <option>Tigers</option>
-                    <option>Astros</option>
-                    <option>Royals</option>
-                    <option>Angels</option>
-                    <option>Dodgers</option>
-                    <option>Marlins</option>
-                    <option>Brewers</option>
-                    <option>Twins</option>
-                    <option>Mets</option>
-                    <option>Yankees</option>
-                    <option>Athletics</option>
-                    <option>Phillies</option>
-                    <option>Pirates</option>
-                    <option>Padres</option>
-                    <option>Mariners</option>
-                    <option>Cardinals</option>
-                    <option>Rays</option>
-                    <option>BlueJays</option>
-                    <option>Nationals</option>
+                    <label for="exampleFormControlSelect1">Team</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
                     </select>
-                </div>
-                <button type="button" class="btn btn-danger">Submit</button>
+                  </div>
+
+                  <button type="button" class="btn btn-warning">Submit</button>
             </form>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
         </div>
-    </div>
-</div>
+        <div class="card">
+          {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
+          <div class="card-body">
+            <h5 class="card-title">Your Picks:</h5>
+            <ul class="picklist">
+                <li>This</li>
+                <li>That</li>
+                <li>The Other</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card mr-4">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Team Schedules</h5>
+            <form action="POST">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Week</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Team</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <button type="button" class="btn btn-warning">Check Schedule</button>
+            </form>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
 
 {{> footer}}
