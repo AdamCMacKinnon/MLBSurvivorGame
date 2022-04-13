@@ -2,21 +2,11 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const models = require('../models');
+const { QueryTypes } = require('sequelize');
+const { sequelize } = require('../models');
 
-router.get('/gamepage', (req,res) => {
+router.get('/gamepage', async (req,res) => {
   res.render('gamepage');
-
-  let user = {
-    username: req.session.username,
-    isactive: req.session.isactive
-  }
-
-  if (user.isactive === true) {
-    res.render({ alert: `Hello {{user.username}}, you are currently ACTIVE` })
-  } else {
-    res.render({ message: `Hello {{user.username}}, you are currently INACTIVE` })
-  }
-
 })
 
 router.post('/logout', (req,res) => {

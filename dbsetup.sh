@@ -1,3 +1,3 @@
 sequelize model:generate --name users --attributes email:string,username:string,password:string,isactive:boolean
-# sequelize model:generate --name teams --attributes team:string,isactive:boolean
-# sequelize model:generate --name picks --attributes user:string,week1:string,week2:string,week3:string,week4:string
+sequelize model:generate --name teams --attributes team:string,outscored:boolean
+sequelize model:generate --name picks --attributes user:string,week1:string,week2:string,week3:string,week4:string,week5:string,week6:string,week7:string,week8:string,week9:string,week10:string,week11:string,week12:string,week13:string,week14:string,week15:string,week16:string,week17:string,week18:string,week19:string,week20:string,week21:string,week22:string,week23:string
