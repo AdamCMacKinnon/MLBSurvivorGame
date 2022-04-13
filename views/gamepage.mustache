@@ -1,6 +1,75 @@
 {{> header}}
     {{> nav}}
 
-GAMEPAGE
+    {{#isactive}}
+    <div class="alert alert-danger" style="text-align: center;"role="alert" style="text-align: center;">you are currently INACTIVE
+    {{/isactive}}
+    {{^isactive}}
+    <div class="alert alert-success" style="text-align: center;"role="alert" style="text-align: center;">you are currently ACTIVE
+    </div>
+    {{/isactive}}
+    <div class="card-deck">
+        <div class="card">
+          {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
+          <div class="card-body">
+            <h5 class="card-title">Team Select</h5>
+            <form action="POST">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Current Week: 1</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>Select...</option>
+                      <option>Angels</option>
+                      <option>Astros</option>
+                      <option>Athletics</option>
+                      <option>Blue Jays</option>
+                      <option>Braves</option>
+                      <option>Brewers</option>
+                      <option>Cardinals</option>
+                      <option>Cubs</option>
+                      <option>Diamondbacks</option>
+                      <option>Dodgers</option>
+                      <option>Giants</option>
+                      <option>Guardians</option>
+                      <option>Mariners</option>
+                      <option>Marlins</option>
+                      <option>Mets</option>
+                      <option>Nationals</option>
+                      <option>Orioles</option>
+                      <option>Padres</option>
+                      <option>Phillies</option>
+                      <option>Pirates</option>
+                      <option>Rangers</option>
+                      <option>Rays</option>
+                      <option>Red Sox</option>
+                      <option>Reds</option>
+                      <option>Rockies</option>
+                      <option>Royals</option>
+                      <option>Tigers</option>
+                      <option>Twins</option>
+                      <option>White Sox</option>
+                      <option>Yankees</option>
+                    </select>
+                  </div>
+                  <button type="button" class="btn btn-warning">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+            {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
+            <div class="card-body">
+              <h5 class="card-title">Team Schedules</h5>
+          </div>
+        </div>
+        <div class="card">
+          {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
+          <div class="card-body">
+            <h5 class="card-title">Your Picks:</h5>
+            <ul class="picklist">
+                <li>This</li>
+                <li>That</li>
+                <li>The Other</li>
+            </ul>
+          </div>
+        </div>
 
 {{> footer}}
