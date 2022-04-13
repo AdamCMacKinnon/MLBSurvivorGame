@@ -13,10 +13,10 @@
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
           <div class="card-body">
             <h5 class="card-title">Team Select</h5>
-            <form action="POST">
+            <form class="pickSubmit" method="POST">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Current Week: 1</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" name="pick" id="exampleFormControlSelect1">
                       <option>Select...</option>
                       <option>Angels</option>
                       <option>Astros</option>
@@ -50,14 +50,19 @@
                       <option>Yankees</option>
                     </select>
                   </div>
-                  <button type="button" class="btn btn-warning">Submit</button>
-            </form>
+                  <button type="submit" id="pickSubmit" class="btn btn-warning">Submit</button>
+            </form><br>
+            {{#message}}
+            <div class="alert alert-info col-6 offset-3" style="text-align: center;" role="alert">
+                {{message}} 
+            </div> 
+            {{/message}}
           </div>
         </div>
         <div class="card">
             {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
             <div class="card-body">
-              <h5 class="card-title">Team Schedules</h5>
+              <h3 class="card-title">Active Players</h3>
           </div>
         </div>
         <div class="card">
@@ -65,9 +70,7 @@
           <div class="card-body">
             <h5 class="card-title">Your Picks:</h5>
             <ul class="picklist">
-                <li>This</li>
-                <li>That</li>
-                <li>The Other</li>
+                <li>Week 1: {{userpick}}</li>
             </ul>
           </div>
         </div>
