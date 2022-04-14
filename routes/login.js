@@ -21,7 +21,7 @@ router.post('/login', async (req,res) => {
         bcrypt.compare(password, user.password, (error, result) => {
             if (result) {
                 if (req.session) {
-                    req.session.user = { userId: user.id }
+                    req.session = { username }
                     // let active;
                     // if (user.isactive === true) {
                     //     active = 'ACTIVE'
