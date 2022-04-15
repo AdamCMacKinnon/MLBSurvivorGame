@@ -1,12 +1,17 @@
 {{> header}}
-    {{> nav}}
 
     <div class="splashContainer col-8 offset-2">
+        {{#message}}
+<div class="alert alert-warning col-6 offset-3" style="text-align: center;" role="alert">
+    {{message}} 
+</div> 
+{{/message}}
         <h3 style="text-align: center;">Welcome to the RAB Survivor Game!</h3><br>
         <p>
-            Devised by MLB stat guru Jim Passon, the game is simple:  Pick your MLB team.  If they outscore their opponents, you survive another week.  If they don't?  You're out! <b>We're putting the final touches on the game for this year, but for now feel free to sign up!</b>
+            Devised by MLB stat guru Jim Passon, the game is simple:  Pick your MLB team.  If they outscore their opponents, you survive another week.  If they don't?  You're out!
         </p><br>
-        <a href="/register"><button type="button" class="btn btn-warning btn-lg btn-block">Sign Up Here!</button></a><br>
+        <h5 style="text-align: center">We are not currently taking signups at this time.</h5><br>
+        <a href="/login"><button type="button" class="btn btn-warning btn-lg btn-block">Login</button></a><br>
         <p style="text-align: center;"><a style="color: white;"href="/rules"><i>Official Game Rules</i></a></p>
     </div>
 {{> footer}}

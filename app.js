@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const session = require('cookie-session');
 const PORT = process.env.PORT || 3000;
+const authorization = require('./auth/authorization')
 
 
 // session data
@@ -14,6 +15,12 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }))
+
+app.use((req,res,next)=>{
+  res.locals.authenticated = req.session.user == null ? false : true
+  next()
+})
+
 // Establish Mustache as Views Engine and point to partials
 const VIEWS_PATH = path.join(__dirname,'/views');
 app.engine('mustache', mustacheExpress(VIEWS_PATH + '/partials','.mustache'));
