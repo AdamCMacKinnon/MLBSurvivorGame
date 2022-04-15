@@ -15,12 +15,6 @@ router.post('/gamepage', async (req,res) => {
   let userpick = req.body.pick
   console.log(user, week, userpick)
 
-  // let uniquePick = await models.picks.findOne({
-  //   where: {
-  //     user: user,
-  //     userpick: userpick
-  //   }
-  // })
   if (userpick != null) {
     let pick = models.picks.build({
       user: user,
@@ -28,7 +22,7 @@ router.post('/gamepage', async (req,res) => {
     })
     let savedPick = await pick.save()
     if (savedPick != null) {
-      res.render('gamepage', {message: `Your Pick of ${userpick} is in!`})
+      res.render('gamepage', {message: `Week 1 Pick: ${userpick}`})
     } else {
       res.render('gamepage', {message: "You've already picked that team!"})
     }
@@ -37,7 +31,7 @@ router.post('/gamepage', async (req,res) => {
 
 router.post('/logout', (req,res) => {
   req.session.destroy(() => {
-    res.render('/', { message: 'you have been logged out' })
+    res.redirect('/', { message: 'you have been logged out' })
   })
 })
 
