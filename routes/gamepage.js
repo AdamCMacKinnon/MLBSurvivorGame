@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const models = require('../models');
-const queries = require('../public/js/queries.js')
 
 router.get('/gamepage', async (req,res) => {
   res.render('gamepage');
