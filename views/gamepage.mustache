@@ -8,7 +8,7 @@
     <div class="alert alert-success" style="text-align: center;"role="alert" style="text-align: center;">you are currently ACTIVE
     </div>
     {{/isactive}}
-    <div class="card-deck">
+    <div class="card-deck col-12">
         <div class="card">
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
           <div class="card-body">
@@ -62,17 +62,22 @@
         <div class="card">
             {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
             <div class="card-body">
-              <h3 class="card-title">Active Players</h3><br>
-              <h1>111</h1>
+              <h3 class="card-title">Active Players</h3>
+              <h1 class="activePlayers">138</h1>
           </div>
         </div>
         <div class="card">
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
           <div class="card-body">
-            <h5 class="card-title">Your Picks:</h5>
-            <ul class="picklist">
-                <li>Week 1: {{userpick}}</li>
-            </ul>
+            <h5 class="card-title">Past Picks:</h5>
+            {{#pick}}
+            <div class="alert alert-info col-6 offset-3" style="text-align: center;" role="primary">
+                {{pick}} 
+            </div> 
+            {{/pick}}
+            <p>Will Show shortly...</p>
           </div>
         </div>
+  </div>
+
 {{> footer}}

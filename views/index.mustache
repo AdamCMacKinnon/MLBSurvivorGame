@@ -1,6 +1,11 @@
 {{> header}}
 
     <div class="splashContainer col-8 offset-2">
+        {{#message}}
+<div class="alert alert-warning col-6 offset-3" style="text-align: center;" role="alert">
+    {{message}} 
+</div> 
+{{/message}}
         <h3 style="text-align: center;">Welcome to the RAB Survivor Game!</h3><br>
         <p>
             Devised by MLB stat guru Jim Passon, the game is simple:  Pick your MLB team.  If they outscore their opponents, you survive another week.  If they don't?  You're out!
