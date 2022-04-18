@@ -76,3 +76,11 @@ body {
     margin-top: 20px;
     height: 400px;
 }
+
+.resetForm {
+    margin-top: 70px;
+    background-color: rgb(1, 73, 1);
+    color: white;
+    padding: 25px;
+    border-radius: 10%;
+}

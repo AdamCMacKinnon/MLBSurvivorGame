@@ -38,6 +38,7 @@ app.use(require('./routes/login'));
 app.use(require('./routes/register'));
 app.use(require('./routes/gamepage'));
 app.use(require('./routes/rules'));
+app.use(require('./routes/passwordreset'));
 
 
 // Create local Server Function
