@@ -9,7 +9,7 @@ router.get('/gamepage', async (req,res) => {
 })
 
 router.post('/gamepage', async (req,res) => {
-  const week = "week1"
+  const week = "week2"
   const user = req.session.username
   let userpick = req.body.pick
   console.log(user, week, userpick)
@@ -17,11 +17,11 @@ router.post('/gamepage', async (req,res) => {
   if (userpick != null) {
     let pick = models.picks.build({
       user: user,
-      week1: userpick
+      week2: userpick
     })
     let savedPick = await pick.save()
     if (savedPick != null) {
-      res.render('gamepage', {message: `Week 1 Pick: ${userpick}`})
+      res.render('gamepage', {message: `Week 2 Pick: ${userpick}`})
     } else {
       res.render('gamepage', {message: "You've already picked that team!"})
     }
