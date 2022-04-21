@@ -14,23 +14,15 @@ router.post('/login', async (req,res) => {
 
     let user = await models.users.findOne({
         where: {
-            username: username
+            username: username,
+
         }
     })
     if (user != null) {
         bcrypt.compare(password, user.password, (error, result) => {
             if (result) {
                 if (req.session) {
-                    req.session = { username }
-                    // let active;
-                    // if (user.isactive === true) {
-                    //     active = 'ACTIVE'
-                    //     res.render('gamepage', { alert: `Hello ${user.username}, you are currently ${active}` })
-                    // } else {
-                    //     active = 'ELIMINATED'
-                    //     res.render('gamepage', { message: `Hello ${user.username}, you are currently ${active}` })
-                    // }
-
+                    req.session = { username: user.username, id: user.id, isactive: user.isactive }
                 }
                 res.redirect('/gamepage')
             } else {
