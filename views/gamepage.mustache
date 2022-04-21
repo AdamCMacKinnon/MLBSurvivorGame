@@ -1,12 +1,13 @@
 {{> header}}
     {{> nav}}
 
-    {{#alert}}
-    <div class="alert alert-warning" style="text-align: center;" role="alert">
-        {{alert}} 
-    </div> 
-    {{/alert}}
-
+    {{#isactive}}
+    <div class="alert alert-danger" style="text-align: center;"role="alert" style="text-align: center;">you are currently INACTIVE
+    {{/isactive}}
+    {{^isactive}}
+    <div class="alert alert-success" style="text-align: center;"role="alert" style="text-align: center;">you are currently ACTIVE
+    </div>
+    {{/isactive}}
     <div class="card-deck col-12">
         <div class="card">
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
@@ -14,7 +15,7 @@
             <h5 class="card-title">Team Select</h5>
             <form class="pickSubmit" method="POST">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Picking for Week 2 </label>
+                    <label for="exampleFormControlSelect1">Picking for Week 2</label>
                     <select class="form-control" name="pick" id="exampleFormControlSelect1">
                       <option>Select...</option>
                       <option>Angels</option>
