@@ -1,13 +1,11 @@
 {{> header}}
     {{> nav}}
 
-    {{#isactive}}
-    <div class="alert alert-danger" style="text-align: center;"role="alert" style="text-align: center;">you are currently INACTIVE
-    {{/isactive}}
-    {{^isactive}}
-    <div class="alert alert-success" style="text-align: center;"role="alert" style="text-align: center;">you are currently ACTIVE
-    </div>
-    {{/isactive}}
+    {{#alert}}
+    <div class="alert alert-warning" style="text-align: center;" role="alert">
+        {{alert}} 
+    </div> 
+    {{/alert}}
     <div class="card-deck col-12">
         <div class="card">
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
