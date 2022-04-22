@@ -11,8 +11,11 @@
         <a class="nav-item nav-link" href="mailto:romanticaboutbaseball@gmail.com">Support</a>
       </div>
       <ul class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="/">Logout</a>
-          </li>
+        <li><a class="nav-item nav-link" href="/">Logout</a></li>
+        {{#authenticated}}
+        <li><a class="nav-item nav-link" href="/login">Login</a></li>
+        {{/authenticated}}
+
       </ul>
     </div>
   </nav>

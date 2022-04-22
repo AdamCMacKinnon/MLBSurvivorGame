@@ -65,6 +65,7 @@ body {
     background-color: rgb(241, 250, 244);
     text-align: center;
     border-radius: 5%;
+    margin-top: 40px;
 }
 .picklist {
     text-align: left;

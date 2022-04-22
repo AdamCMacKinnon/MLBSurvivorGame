@@ -14,7 +14,6 @@ router.get('/gamepage', async (req,res) => {
 })
 
 router.post('/gamepage', async (req,res) => {
-  const week2 = "week2"
   const user = req.session.username
   const status = req.session.isactive
   let userpick = req.body.pick
