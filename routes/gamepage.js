@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const models = require('../models');
+const { QueryTypes } = require('sequelize');
+const { sequelize } = require('../models');
 
 router.get('/gamepage', async (req,res) => {
   let isactive = req.session.isactive
@@ -11,6 +13,9 @@ router.get('/gamepage', async (req,res) => {
   } else {
     res.render('gamepage', { alert: `Hello ${user}, you have been ELIMINATED`})
   }
+
+  // const prevPicks = await sequelize.query(`SELECT week1 FROM picks WHERE user='${user}'`, { type: QueryTypes.SELECT })
+  // console.log(prevPicks)
 })
 
 router.post('/gamepage', async (req,res) => {
@@ -19,7 +24,7 @@ router.post('/gamepage', async (req,res) => {
   let userpick = req.body.pick
 
   if (status === false) {
-    res.render('gamepage', { message: 'Sorry, you cannot make any more picks this year!' })
+    res.render('gamepage', { message: 'Sorry, you have been eliminated!' })
   } else {
     if (userpick != null) {
       let pick = models.picks.build({
