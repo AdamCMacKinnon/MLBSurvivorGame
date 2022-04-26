@@ -29,11 +29,11 @@ router.post('/gamepage', async (req,res) => {
     if (userpick != null) {
       let pick = models.picks.build({
         user: user,
-        week2: userpick
+        week3: userpick
       })
       let savedPick = await pick.save()
       if (savedPick != null) {
-        res.render('gamepage', {message: `Week 2 Pick: ${userpick}`})
+        res.render('gamepage', {message: `Week 3 Pick: ${userpick}`})
       } else {
         res.render('gamepage', {message: "You've already picked that team!"})
       }
