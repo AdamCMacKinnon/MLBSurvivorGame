@@ -21,15 +21,16 @@ router.get('/gamepage', async (req,res) => {
 router.post('/gamepage', async (req,res) => {
   const user = req.session.username
   const status = req.session.isactive
-  let userpick = req.body.pick
+  const userid = req.session.id
+  const userpick = [req.body.pick]
 
   if (status === false) {
     res.render('gamepage', { message: 'Sorry, you have been eliminated!' })
   } else {
-    if (userpick != null) {
       let pick = models.picks.build({
-        user: user,
-        week3: userpick
+        userid: userid,
+        username: user,
+        picks: userpick
       })
       let savedPick = await pick.save()
       if (savedPick != null) {
@@ -38,7 +39,6 @@ router.post('/gamepage', async (req,res) => {
         res.render('gamepage', {message: "You've already picked that team!"})
       }
     }
-  }
 })
 
 router.post('/logout', (req,res) => {
