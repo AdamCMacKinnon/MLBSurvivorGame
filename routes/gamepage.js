@@ -27,16 +27,34 @@ router.post('/gamepage', async (req,res) => {
   if (status === false) {
     res.render('gamepage', { message: 'Sorry, you have been eliminated!' })
   } else {
-      let pick = models.picks.build({
+      let findId = await models.picks.findOne({
+        where: {
+          userid: userid
+        }
+      })
+      if (findId !== null) {
+        await models.picks.update({
+          userid: userid,
+          username: user,
+          picks: userpick
+        }, {
+          where: {
+            userid: userid
+          }
+        })
+          res.render('gamepage', {message: `Week 3 Pick: ${userpick}`})
+      } else {
+          let pick = models.picks.build({
         userid: userid,
         username: user,
         picks: userpick
       })
-      let savedPick = await pick.save()
-      if (savedPick != null) {
-        res.render('gamepage', {message: `Week 3 Pick: ${userpick}`})
-      } else {
-        res.render('gamepage', {message: "You've already picked that team!"})
+          let savedPick = await pick.save()
+        if (savedPick != null) {
+          res.render('gamepage', {message: `Week 3 Pick: ${userpick}`})
+        } else {
+          res.render('gamepage', {message: "You've already picked that team!"})
+        }
       }
     }
 })
