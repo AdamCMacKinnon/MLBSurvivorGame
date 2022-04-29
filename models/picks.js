@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   picks.init({
     userid: DataTypes.INTEGER,
     username: DataTypes.STRING,
-    picks: DataTypes.ARRAY(DataTypes.STRING)
+    picks: DataTypes.ARRAY(DataTypes.TEXT)
   }, {
     sequelize,
     modelName: 'picks',
