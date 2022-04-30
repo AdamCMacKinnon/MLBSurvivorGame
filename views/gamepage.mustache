@@ -70,11 +70,11 @@
           <div class="card-body">
             <h5 class="card-title">Past Picks:</h5>
             <p>Coming soon...</p>
-            <ul>
-              <li>
-                {{seePicks}}
-              </li>
-            </ul>
+            {{#picksResult}}
+            <div class="alert alert-success" style="text-align: center;" role="alert">
+                {{picksResult}} 
+            </div> 
+            {{/picksResult}}
           </div>
         </div>
   </div>
