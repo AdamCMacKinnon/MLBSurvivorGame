@@ -6,27 +6,34 @@ const { QueryTypes } = require('sequelize');
 const { sequelize } = require('../models');
 const { TEXT } = require('sequelize');
 
+
+
 router.get('/gamepage', async (req,res) => {
   let userid = req.session.id
   let isactive = req.session.isactive
   let user = req.session.username
-  const picksArr = 
-  await models.picks.findAll({
-    where: {
-      userid: userid
-    },
-    attributes: ['picks'],
-    raw: true
-  })
-  const seePicks = JSON.stringify(picksArr)
-  let result = picksArr.map(p => p.picks)
-  const picksResult = result[0]
-  console.log("PICKS RESULT " + picksResult)
-  console.log(seePicks)
-  console.log("RESULT " + result)
+
+  if (!userid || userid === undefined) {
+        res.status(400).json({
+          status_code: 0,
+          error_msg: "you are not logged in!, please log in to continue"
+        })
+  } else {
+    const picksArr = 
+    await models.picks.findAll({
+      where: {
+        userid: userid
+      },
+      attributes: ['picks'],
+      raw: true
+    })
+    let result = picksArr.map(p => p.picks)
+    const picksResult = result[0]
+  }
+
+
   if (isactive === true) {
-    res.render('gamepage', { alert: `Hello ${user}, You are currently ACTIVE`} &&
-    { picksResult: result })
+    res.render('gamepage', { alert: `Hello ${user}, You are currently ACTIVE`})
     } else {
       res.render('gamepage', { alert: `Hello ${user}, you have been ELIMINATED`})
     }
@@ -37,6 +44,20 @@ router.post('/gamepage', async (req,res) => {
   const status = req.session.isactive
   const userid = req.session.id
   const userpick = [req.body.pick]
+
+  if (!userid || userid === undefined) {
+    res.render('gamepage', {alert: 'you are not logged in!, please login to continue.'} )
+  } else {
+    const picksArr = 
+    await models.picks.findAll({
+      where: {
+        userid: userid
+      },
+      attributes: ['picks'],
+      raw: true
+    })
+    const result = picksArr.map(p => p.picks)
+  }
   if (status === false) {
     res.render('gamepage', { message: 'Sorry, you have been eliminated!' })
   } else {
@@ -53,7 +74,7 @@ router.post('/gamepage', async (req,res) => {
             userid: userid
           }
         })
-          // res.render('gamepage', {message: `Week 3 Pick: ${userpick}`})
+          res.render('gamepage', {message: `Week 3 Pick: ${userpick}`})
       } else {
           let pick = models.picks.build({
         userid: userid,
@@ -76,7 +97,7 @@ router.post('/logout', (req,res) => {
   })
 })
 
-async function comparePicks(userpick, userid) {
+async function comparePicks(userid, userpick) {
   const picksArr = 
   await models.picks.findAll({
     where: {
@@ -85,11 +106,11 @@ async function comparePicks(userpick, userid) {
     attributes: ['picks'],
     raw: true
   })
-  console.log("OBJECT " + Object.values(picksArr[0]))
-  for (let p = 0; p < picksArr.length; p++) {
-    if (Object.values(picksArr)[p] === userpick) {
+  const result = picksArr.map(p => p.picks)
+  for (let p = 0; p < result.length; p++) {
+    if (p === userpick) {
       return true
-    } 
+    }
   }
 }
 

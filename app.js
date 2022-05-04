@@ -17,7 +17,7 @@ app.use(session({
 }))
 
 app.use((req,res,next)=>{
-  res.locals.authenticated = req.session.user == null ? false : true
+  res.locals.authenticated = req.session.user == null || undefined ? false : true
   next()
 })
 
