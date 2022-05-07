@@ -10,7 +10,7 @@
     "prod": "set NODE_ENV=production && node app.js",
     "migrate": "sequelize db:migrate",
     "deploy-prod": "git push heroku main",
-    "deploy-test": "git push heroku test"
+    "deploy-stage": "git push heroku stage"
   },
   "author": "Adam C. MacKinnon",
   "license": "MIT",
