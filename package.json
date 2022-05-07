@@ -6,9 +6,11 @@
     "test": "npm run test",
     "start": "node app.js",
     "local": "set NODE_ENV=local && nodemon app.js",
+    "testing": "set NODE_ENV=testing && nodemon app.js",
     "prod": "set NODE_ENV=production && node app.js",
     "migrate": "sequelize db:migrate",
-    "deploy": "git push heroku main"
+    "deploy-prod": "git push heroku main",
+    "deploy-test": "git push heroku test"
   },
   "author": "Adam C. MacKinnon",
   "license": "MIT",
