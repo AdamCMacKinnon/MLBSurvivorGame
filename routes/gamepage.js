@@ -82,7 +82,7 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Week 3 Pick: ${userpick}` });
+      res.render("gamepage", { message: `Week 4 Pick: ${userpick}` });
     } else {
       let pick = models.picks.build({
         userid: userid,
