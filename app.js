@@ -11,7 +11,7 @@ const authorization = require('./auth/authorization')
 
 // session data
 app.use(session({
-  secret: process.env.SECRET,
+  secret: [process.env.SECRET],
   resave: true,
   saveUninitialized: false
 }))
