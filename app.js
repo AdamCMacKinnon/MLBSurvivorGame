@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // session data
 app.use(session({
-  secret: [process.env.SECRET],
+  secret: process.env.SECRET,
   resave: true,
   saveUninitialized: false
 }))
