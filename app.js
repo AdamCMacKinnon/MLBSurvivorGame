@@ -2,12 +2,9 @@ const express = require('express');
 const app = express();
 const mustacheExpress = require('mustache-express');
 const path = require('path');
-const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const session = require('cookie-session');
 const PORT = process.env.PORT || 3000;
-const authorization = require('./auth/authorization')
-
 
 // session data
 app.use(session({
