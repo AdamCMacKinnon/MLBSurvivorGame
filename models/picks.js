@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.picks.belongsTo(users)
     }
   };
   picks.init({
-    userid: DataTypes.INTEGER,
+    id: DataTypes.UUID,
     username: DataTypes.STRING,
-    picks: DataTypes.ARRAY(DataTypes.TEXT)
+    picks: DataTypes.ARRAY
   }, {
     sequelize,
     modelName: 'picks',
