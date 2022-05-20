@@ -82,7 +82,7 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Week 5 Pick: ${userpick}` });
+      res.render("gamepage", { message: `Week 6 Pick: ${userpick}` });
     } else {
       let pick = models.picks.build({
         userid: userid,
@@ -91,7 +91,7 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Week 5 Pick: ${userpick}` });
+        res.render("gamepage", { message: `Week 6 Pick: ${userpick}` });
       } else {
         comparePicks(userpick, userid);
       }
