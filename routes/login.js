@@ -21,7 +21,7 @@ router.post('/login', async (req,res) => {
         bcrypt.compare(password, user.password, (error, result) => {
             if (result) {
                 if (req.session) {
-                    req.session = { username: user.username, id: user.id, isactive: user.isactive }
+                    req.session = { username: user.username, userid: user.userid, isactive: user.isactive }
 
                 }
                 res.redirect('/gamepage')

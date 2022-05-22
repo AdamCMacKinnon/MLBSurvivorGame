@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('picks', {
@@ -6,7 +7,7 @@ module.exports = {
         type: Sequelize.UUID,
         references: {
           model: 'users',
-          key: 'userid'
+          key: 'id'
         }
       },
       username: {
