@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const bcrypt = require('bcryptjs')
-const models = require('../models');
+const models = require('../../models');
 
 router.get('/login', (req,res) => {
   res.render('login');
@@ -24,7 +24,7 @@ router.post('/login', async (req,res) => {
                     req.session = { username: user.username, id: user.id, isactive: user.isactive }
 
                 }
-                res.redirect('/gamepage')
+                res.render('gamepage')
             } else {
                 res.render('login', { message: 'Incorrect Username or Password (1)'})
             }

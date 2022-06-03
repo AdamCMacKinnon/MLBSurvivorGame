@@ -11,12 +11,6 @@ router.get("/gamepage", async (req, res) => {
   let isactive = req.session.isactive;
   let user = req.session.username;
 
-  if (!userid || userid === undefined) {
-    res.status(400).json({
-      status_code: 0,
-      error_msg: "you are not logged in!, please log in to continue",
-    });
-  } else {
     const picksArr = await models.picks.findAll({
       where: {
         userid: userid,
@@ -26,7 +20,6 @@ router.get("/gamepage", async (req, res) => {
     });
     let result = picksArr.map((p) => p.picks);
     const picksResult = result[0];
-  }
 
   if (isactive === true) {
     res.render("gamepage", {

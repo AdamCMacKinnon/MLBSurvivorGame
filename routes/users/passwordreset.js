@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const models = require('../models')
+const models = require('../../models')
 const bcrypt = require('bcryptjs')
 const SALT = 10;
 
