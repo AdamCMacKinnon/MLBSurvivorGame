@@ -3,6 +3,7 @@ const router = express.Router();
 router.use(express.json());
 const bcrypt = require('bcryptjs');
 const models = require('../../models');
+const UUID = require('uuid');
 const SALT = 10;
 
 router.get('/register', (req,res) => {
@@ -27,7 +28,7 @@ router.post('/register', async (req,res) =>{
                 res.render('register', { message: "There was an error!"})
             } else {
                 let user = models.users.build({
-                    id: UUIDV4(),
+                    id: UUID.v4(),
                     username: username,
                     email: email,
                     password: hash,
