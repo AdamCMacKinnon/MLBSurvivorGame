@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const bcrypt = require('bcryptjs');
-const models = require('../models');
-const { v4: UUIDV4 } = require('uuid');
+const models = require('../../models');
 const SALT = 10;
 
 router.get('/register', (req,res) => {

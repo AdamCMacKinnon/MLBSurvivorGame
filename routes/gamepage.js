@@ -2,21 +2,17 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 const models = require("../models");
-const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
+const authorization = require('../auth/authorization');
 
-router.get("/gamepage", async (req, res) => {
+router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
   let isactive = req.session.isactive;
   let user = req.session.username;
 
-  if (!userid || userid === undefined) {
-    res.status(400).json({
-      status_code: 0,
-      error_msg: "you are not logged in!, please log in to continue",
-    });
-  } else {
+  console.log(req.session)
+
     const picksArr = await models.picks.findAll({
       where: {
         userid: userid,
@@ -26,7 +22,6 @@ router.get("/gamepage", async (req, res) => {
     });
     let result = picksArr.map((p) => p.picks);
     const picksResult = result[0];
-  }
 
   if (isactive === true) {
     res.render("gamepage", {
