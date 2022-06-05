@@ -4,8 +4,9 @@ router.use(express.json());
 const models = require("../models");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
+const authorization = require('../auth/authorization');
 
-router.get("/gamepage", async (req, res) => {
+router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
   let isactive = req.session.isactive;
   let user = req.session.username;
