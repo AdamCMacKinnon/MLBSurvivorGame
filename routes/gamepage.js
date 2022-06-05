@@ -29,7 +29,7 @@ router.get("/gamepage", authorization, async (req, res) => {
     });
   } else {
     res.render("gamepage", {
-      alert: `Hello ${user}, you have been ELIMINATED`,
+      warning: `Hello ${user}, you have been ELIMINATED`,
     });
   }
 });

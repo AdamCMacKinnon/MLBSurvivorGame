@@ -26,11 +26,11 @@ router.post('/login', async (req,res) => {
                     res.redirect("/gamepage")
                 }
             } else {
-                res.render('login', { message: 'Incorrect Username or Password (1)'})
+                res.render('login', { message: 'Incorrect Username or Password'})
             }
         })
     } else {
-        res.render('login', { message: 'Incorrect username or password (2)'})
+        res.render('login', { message: `ERROR CODE 2`})
     }
 
 })

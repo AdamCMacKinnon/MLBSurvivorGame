@@ -2,10 +2,15 @@
     {{> nav}}
 
     {{#alert}}
-    <div class="alert alert-warning" style="text-align: center;" role="alert">
+    <div class="alert alert-success" style="text-align: center;" role="alert">
         {{alert}} 
     </div> 
     {{/alert}}
+    {{#warning}}
+    <div class="alert alert-danger" style="text-align: center;" role="alert">
+        {{warning}} 
+    </div> 
+    {{/warning}}
     <div class="card-deck col-12">
         <div class="card">
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}

@@ -11,7 +11,7 @@ router.get('/register', (req,res) => {
 });
 
 router.post('/register', async (req,res) =>{
-    let username = req.body.username.toLowerCase()
+    let username = req.body.username
     let email = req.body.email.toLowerCase()
     let password = req.body.password
 
