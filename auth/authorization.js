@@ -1,15 +1,13 @@
 
 function authorization(req,res,next) {
     if(req.session){
-        if(req.session.user) {
+        if(req.session.id) {
             res.locals.authenticated = true
             next()
         } else {
-            req.session.destroy()
             res.redirect('/')
         }
     } else {
-        req.session.destroy()
         res.redirect('/')
     }
 }

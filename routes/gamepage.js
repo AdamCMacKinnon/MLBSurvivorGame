@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 const models = require("../models");
-const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
 
@@ -10,6 +9,8 @@ router.get("/gamepage", async (req, res) => {
   let userid = req.session.id;
   let isactive = req.session.isactive;
   let user = req.session.username;
+
+  console.log(req.session)
 
     const picksArr = await models.picks.findAll({
       where: {

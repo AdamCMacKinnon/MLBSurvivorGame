@@ -22,9 +22,9 @@ router.post('/login', async (req,res) => {
             if (result) {
                 if (req.session) {
                     req.session = { username: user.username, id: user.id, isactive: user.isactive }
-
+                    console.log(req.session)
+                    res.redirect("/gamepage")
                 }
-                res.render('gamepage')
             } else {
                 res.render('login', { message: 'Incorrect Username or Password (1)'})
             }
