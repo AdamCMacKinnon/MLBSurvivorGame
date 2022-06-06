@@ -5,6 +5,7 @@ const models = require("../models");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
 const authorization = require('../auth/authorization');
+const mustacheExpress = require("mustache-express");
 
 router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
@@ -23,13 +24,22 @@ router.get("/gamepage", authorization, async (req, res) => {
     let result = picksArr.map((p) => p.picks);
     const picksResult = result[0];
 
+    function setKey(picksResult, index) {
+      let fullObj = "pick: " + picksResult
+      return fullObj 
+    }
+    const picksList = picksResult.map(setKey);
+    console.log(picksList)
+
   if (isactive === true) {
     res.render("gamepage", {
-      alert: `Hello ${user}, You are currently ACTIVE`,
+      alert: `Hello ${user.toUpperCase()}, You are currently ACTIVE`,
+      picksResult
     });
   } else {
     res.render("gamepage", {
-      warning: `Hello ${user}, you have been ELIMINATED`,
+      warning: `Hello ${user.toUpperCase()}, you have been ELIMINATED`, 
+      picksResult
     });
   }
 });
@@ -39,21 +49,16 @@ router.post("/gamepage", async (req, res) => {
   const status = req.session.isactive;
   const userid = req.session.id;
   const userpick = [req.body.pick];
+  const picksArr = await models.picks.findAll({
+    where: {
+      userid: userid,
+    },
+    attributes: ["picks"],
+    raw: true,
+  });
+  let result = picksArr.map((p) => p.picks);
+  const picksResult = result[0];
 
-  if (!userid || userid === undefined) {
-    res.render("gamepage", {
-      alert: "you are not logged in!, please login to continue.",
-    });
-  } else {
-    const picksArr = await models.picks.findAll({
-      where: {
-        userid: userid,
-      },
-      attributes: ["picks"],
-      raw: true,
-    });
-    const result = picksArr.map((p) => p.picks);
-  }
   if (status === false) {
     res.render("gamepage", { message: "Sorry, you have been eliminated!" });
   } else {
@@ -77,7 +82,7 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Week 6 Pick: ${userpick}` });
+      res.render("gamepage", { message: `Week 6 Pick: ${userpick}`, picksResult });
     } else {
       let pick = models.picks.build({
         userid: userid,
@@ -86,7 +91,7 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Week 6 Pick: ${userpick}` });
+        res.render("gamepage", { message: `Week 6 Pick: ${userpick}`, picksResult });
       } else {
         comparePicks(userpick, userid);
       }

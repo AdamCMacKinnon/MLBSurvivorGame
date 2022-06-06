@@ -75,12 +75,11 @@
           {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
           <div class="card-body">
             <h5 class="card-title">Past Picks:</h5>
-            <p>Coming soon...</p>
-            {{#picksResult}}
-            <div class="alert alert-success" style="text-align: center;" role="alert">
-                {{picksResult}} 
-            </div> 
-            {{/picksResult}}
+                <ul style="text-align: left">
+                  {{#picksResult}}
+                    <li>{{.}}</li>
+                    {{/picksResult}}
+                </ul>
           </div>
         </div>
   </div>
