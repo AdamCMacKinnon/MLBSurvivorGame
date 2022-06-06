@@ -25,11 +25,19 @@ router.get("/gamepage", authorization, async (req, res) => {
     const picksResult = result[0];
 
     function setKey(picksResult, index) {
-      let fullObj = "pick: " + picksResult
-      return fullObj 
+      if (picksResult.length > 0) {
+        let fullObj = "pick: " + picksResult
+        return fullObj 
+      } 
     }
-    const picksList = picksResult.map(setKey);
-    console.log(picksList)
+    const picksList = function(picksResult) {
+      if (picksResult === null || undefined) {
+        return null
+      } else {
+        let picks = picksResult.map(setKey)
+        return picks
+      }
+    }
 
   if (isactive === true) {
     res.render("gamepage", {

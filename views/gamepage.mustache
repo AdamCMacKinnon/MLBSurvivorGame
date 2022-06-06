@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Picking for Week 6</label>
                     <select class="form-control" name="pick" id="exampleFormControlSelect1">
-                      <option>Select...</option>
+                      <option disabled>Select...</option>
                       <option>Angels</option>
                       <option>Astros</option>
                       <option>Athletics</option>
@@ -83,5 +83,11 @@
           </div>
         </div>
   </div>
+
+    <script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
 
 {{> footer}}
