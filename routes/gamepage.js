@@ -65,10 +65,15 @@ router.post("/gamepage", async (req, res) => {
     raw: true,
   });
   let result = picksArr.map((p) => p.picks);
-  const picksResult = result[0];
+  let picksResult = result[0];
+  if (picksResult === undefined) {
+    picksResult = '';
+  }
 
   if (status === false) {
-    res.render("gamepage", { message: "Sorry, you have been eliminated!" });
+    res.render("gamepage", { message: "Sorry, you have been eliminated" , picksResult });
+  } else if (picksResult.includes(userpick.toString())) {
+    res.render("gamepage", { message: "you've already picked that team!", picksResult });
   } else {
     let findId = await models.picks.findOne({
       where: {
@@ -90,7 +95,7 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Week 6 Pick: ${userpick}`, picksResult });
+      res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult });
     } else {
       let pick = models.picks.build({
         userid: userid,
@@ -99,9 +104,7 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Week 6 Pick: ${userpick}`, picksResult });
-      } else {
-        comparePicks(userpick, userid);
+        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult });
       }
     }
   }
@@ -112,21 +115,5 @@ router.post("/logout", (req, res) => {
     res.redirect("/", { message: "you have been logged out" });
   });
 });
-
-async function comparePicks(userid, userpick) {
-  const picksArr = await models.picks.findAll({
-    where: {
-      userid: userid,
-    },
-    attributes: ["picks"],
-    raw: true,
-  });
-  const result = picksArr.map((p) => p.picks);
-  for (let p = 0; p < result.length; p++) {
-    if (p === userpick) {
-      return true;
-    }
-  }
-}
 
 module.exports = router;
