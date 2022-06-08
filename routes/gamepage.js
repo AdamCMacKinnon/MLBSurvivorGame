@@ -104,7 +104,7 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult, warning });
+        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult});
       }
     }
   }
