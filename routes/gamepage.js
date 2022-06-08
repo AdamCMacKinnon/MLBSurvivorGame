@@ -24,7 +24,7 @@ router.get("/gamepage", authorization, async (req, res) => {
     let result = picksArr.map((p) => p.picks);
     const picksResult = result[0];
 
-    function setKey(picksResult, index) {
+    function setKey(picksResult) {
       if (picksResult.length > 0) {
         let fullObj = "pick: " + picksResult
         return fullObj 
@@ -104,7 +104,7 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult });
+        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult, warning });
       }
     }
   }
