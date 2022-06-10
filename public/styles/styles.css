@@ -13,14 +13,13 @@
 
 body {
     background-image: url("/assets/firstbase.jpg");
+    background-color: black;
+    background-blend-mode: hard-light;
 }
 
 .splashContainer {
-    margin-top: 50px;
-    background-color: rgb(1, 73, 1);
+    margin-top: 300px;
     color: white;
-    padding: 35px;
-    border-radius: 15%;
 }
 #loginButton {
     margin: 0 auto;
@@ -29,18 +28,12 @@ body {
 }
 
 .loginForm {
-    margin-top: 100px;
-    background-color: rgb(1, 73, 1);
+    margin-top: 300px;
     color: white;
-    padding: 25px;
-    border-radius: 10%;
 }
 .regForm {
-    margin-top: 70px;
-    background-color: rgb(1, 73, 1);
+    margin-top: 250px;
     color: white;
-    padding: 25px;
-    border-radius: 10%;
 }
 
 .rulesContainer {
@@ -52,11 +45,8 @@ body {
 }
 
 .thankyoubox {
-    margin-top: 100px;
-    background-color: rgb(1, 73, 1);
+    margin-top: 300px;
     color: white;
-    padding: 25px;
-    border-radius: 10%;
 }
 
 /* GAME PAGE STYLES */
@@ -79,9 +69,6 @@ body {
 }
 
 .resetForm {
-    margin-top: 70px;
-    background-color: rgb(1, 73, 1);
+    margin-top: 300px;
     color: white;
-    padding: 25px;
-    border-radius: 10%;
 }
