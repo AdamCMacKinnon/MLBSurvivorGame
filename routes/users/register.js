@@ -26,6 +26,9 @@ router.post('/register', async (req,res) =>{
         bcrypt.hash(password, SALT, async (error, hash) => {
             if (error) {
                 res.render('register', { message: "There was an error!"})
+            }
+            else if (password.length < 7) {
+                res.render('register', { message: 'Password must be at least 8 characters!' })
             } else {
                 let user = models.users.build({
                     id: UUID.v4(),

@@ -27,6 +27,8 @@ router.post('/passwordreset', async (req,res) => {
     } else {
         if (password !== updatepassword || password && updatepassword == undefined) {
             res.render('passwordreset', { message: "password do not match!" })
+        } else if (updatepassword.length < 7) {
+            res.render('passwordreset', { message: 'Password must be at least 8 characters!' })
         } else {
             bcrypt.hash(password, SALT, async (error, hash) => {
                 if (error) {
