@@ -5,6 +5,7 @@ const models = require("../models");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
 const authorization = require('../auth/authorization');
+const { QueryTypes} = require('sequelize');
 const mustacheExpress = require("mustache-express");
 
 router.get("/gamepage", authorization, async (req, res) => {
@@ -13,6 +14,16 @@ router.get("/gamepage", authorization, async (req, res) => {
   let user = req.session.username;
 
   console.log(req.session)
+
+  const totalUsers = await models.users.findOne({
+    where: {
+      isactive: true
+    },
+    attributes: [sequelize.fn("COUNT", sequelize.col("username"))],
+    raw: true
+  })
+  const userCount = Object.values(totalUsers).toString()
+console.log(userCount)
 
     const picksArr = await models.picks.findAll({
       where: {
@@ -42,12 +53,12 @@ router.get("/gamepage", authorization, async (req, res) => {
   if (isactive === true) {
     res.render("gamepage", {
       alert: `Hello ${user.toUpperCase()}, You are currently ACTIVE`,
-      picksResult
+      picksResult, userCount
     });
   } else {
     res.render("gamepage", {
       warning: `Hello ${user.toUpperCase()}, you have been ELIMINATED`, 
-      picksResult
+      picksResult, userCount
     });
   }
 });
@@ -70,10 +81,19 @@ router.post("/gamepage", async (req, res) => {
     picksResult = '';
   }
 
+  const totalUsers = await models.users.findOne({
+    where: {
+      isactive: true
+    },
+    attributes: [sequelize.fn("COUNT", sequelize.col("username"))],
+    raw: true
+  })
+  const userCount = Object.values(totalUsers).toString()
+
   if (status === false) {
-    res.render("gamepage", { message: "Sorry, you have been eliminated" , picksResult });
+    res.render("gamepage", { message: "Sorry, you have been eliminated" , picksResult, userCount });
   } else if (picksResult.includes(userpick.toString())) {
-    res.render("gamepage", { message: "you've already picked that team!", picksResult });
+    res.render("gamepage", { message: "you've already picked that team!", picksResult, userCount });
   } else {
     let findId = await models.picks.findOne({
       where: {
@@ -95,7 +115,7 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult });
+      res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult, userCount });
     } else {
       let pick = models.picks.build({
         userid: userid,
@@ -104,7 +124,7 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult});
+        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult, userCount });
       }
     }
   }
