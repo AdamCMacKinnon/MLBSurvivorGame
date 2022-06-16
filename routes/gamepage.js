@@ -5,15 +5,12 @@ const models = require("../models");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
 const authorization = require('../auth/authorization');
-const { QueryTypes} = require('sequelize');
-const mustacheExpress = require("mustache-express");
+
 
 router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
   let isactive = req.session.isactive;
   let user = req.session.username;
-
-  console.log(req.session)
 
   const totalUsers = await models.users.findOne({
     where: {
@@ -23,7 +20,7 @@ router.get("/gamepage", authorization, async (req, res) => {
     raw: true
   })
   const userCount = Object.values(totalUsers).toString()
-console.log(userCount)
+
 
     const picksArr = await models.picks.findAll({
       where: {

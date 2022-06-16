@@ -22,7 +22,6 @@ router.post('/login', async (req,res) => {
             if (result) {
                 if (req.session) {
                     req.session = { username: user.username, id: user.id, isactive: user.isactive }
-                    console.log(req.session)
                     res.redirect("/gamepage")
                 }
             } else {
@@ -30,7 +29,7 @@ router.post('/login', async (req,res) => {
             }
         })
     } else {
-        res.render('login', { message: `ERROR CODE 2`})
+        res.render('login', { message: `ERROR CODE 2: Remember Usernames are CaSe SeNsItIvE`})
     }
 
 })
