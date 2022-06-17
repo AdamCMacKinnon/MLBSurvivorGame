@@ -4,8 +4,7 @@ router.use(express.json());
 const models = require("../models");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
-const authorization = require('../auth/authorization');
-
+const authorization = require("../auth/authorization");
 
 router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
@@ -14,48 +13,49 @@ router.get("/gamepage", authorization, async (req, res) => {
 
   const totalUsers = await models.users.findOne({
     where: {
-      isactive: true
+      isactive: true,
     },
     attributes: [sequelize.fn("COUNT", sequelize.col("username"))],
-    raw: true
-  })
-  const userCount = Object.values(totalUsers).toString()
+    raw: true,
+  });
+  const userCount = Object.values(totalUsers).toString();
 
+  const picksArr = await models.picks.findAll({
+    where: {
+      userid: userid,
+    },
+    attributes: ["picks"],
+    raw: true,
+  });
+  let result = picksArr.map((p) => p.picks);
+  const picksResult = result[0];
 
-    const picksArr = await models.picks.findAll({
-      where: {
-        userid: userid,
-      },
-      attributes: ["picks"],
-      raw: true,
-    });
-    let result = picksArr.map((p) => p.picks);
-    const picksResult = result[0];
-
-    function setKey(picksResult) {
-      if (picksResult.length > 0) {
-        let fullObj = "pick: " + picksResult
-        return fullObj 
-      } 
+  function setKey(picksResult) {
+    if (picksResult.length > 0) {
+      let fullObj = "pick: " + picksResult;
+      return fullObj;
     }
-    const picksList = function(picksResult) {
-      if (picksResult === null || undefined) {
-        return null
-      } else {
-        let picks = picksResult.map(setKey)
-        return picks
-      }
+  }
+  const picksList = function (picksResult) {
+    if (picksResult === null || undefined) {
+      return null;
+    } else {
+      let picks = picksResult.map(setKey);
+      return picks;
     }
+  };
 
   if (isactive === true) {
     res.render("gamepage", {
       alert: `Hello ${user.toUpperCase()}, You are currently ACTIVE`,
-      picksResult, userCount
+      picksResult,
+      userCount,
     });
   } else {
     res.render("gamepage", {
-      warning: `Hello ${user.toUpperCase()}, you have been ELIMINATED`, 
-      picksResult, userCount
+      warning: `Hello ${user.toUpperCase()}, you have been ELIMINATED`,
+      picksResult,
+      userCount,
     });
   }
 });
@@ -75,22 +75,30 @@ router.post("/gamepage", async (req, res) => {
   let result = picksArr.map((p) => p.picks);
   let picksResult = result[0];
   if (picksResult === undefined) {
-    picksResult = '';
+    picksResult = "";
   }
 
   const totalUsers = await models.users.findOne({
     where: {
-      isactive: true
+      isactive: true,
     },
     attributes: [sequelize.fn("COUNT", sequelize.col("username"))],
-    raw: true
-  })
-  const userCount = Object.values(totalUsers).toString()
+    raw: true,
+  });
+  const userCount = Object.values(totalUsers).toString();
 
   if (status === false) {
-    res.render("gamepage", { message: "Sorry, you have been eliminated" , picksResult, userCount });
+    res.render("gamepage", {
+      message: "Sorry, you have been eliminated",
+      picksResult,
+      userCount,
+    });
   } else if (picksResult.includes(userpick.toString())) {
-    res.render("gamepage", { message: "you've already picked that team!", picksResult, userCount });
+    res.render("gamepage", {
+      message: "you've already picked that team!",
+      picksResult,
+      userCount,
+    });
   } else {
     let findId = await models.picks.findOne({
       where: {
@@ -112,7 +120,11 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult, userCount });
+      res.render("gamepage", {
+        message: `Current Pick: ${userpick}`,
+        picksResult,
+        userCount,
+      });
     } else {
       let pick = models.picks.build({
         userid: userid,
@@ -121,7 +133,11 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Current Pick: ${userpick}`, picksResult, userCount });
+        res.render("gamepage", {
+          message: `Current Pick: ${userpick}`,
+          picksResult,
+          userCount,
+        });
       }
     }
   }
