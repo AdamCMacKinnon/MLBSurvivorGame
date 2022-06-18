@@ -1,92 +1,104 @@
 {{> header}}
-    {{> nav}}
-    {{#alert}}
-    <div class="alert alert-success" style="text-align: center;" role="alert">
-        {{alert}} 
-    </div> 
-    {{/alert}}
-    {{#warning}}
-    <div class="alert alert-danger" style="text-align: center;" role="alert">
-        {{warning}} 
-    </div> 
-    {{/warning}}
-    <div class="card-deck col-12">
-        <div class="card">
-          {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
-          <div class="card-body">
-            <h5 class="card-title">Team Select</h5>
-            <form class="pickSubmit" method="POST">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Picking for Week 6</label>
-                    <select class="form-control" name="pick" id="exampleFormControlSelect1">
-                      <option disabled>Select...</option>
-                      <option>Angels</option>
-                      <option>Astros</option>
-                      <option>Athletics</option>
-                      <option>Blue Jays</option>
-                      <option>Braves</option>
-                      <option>Brewers</option>
-                      <option>Cardinals</option>
-                      <option>Cubs</option>
-                      <option>Diamondbacks</option>
-                      <option>Dodgers</option>
-                      <option>Giants</option>
-                      <option>Guardians</option>
-                      <option>Mariners</option>
-                      <option>Marlins</option>
-                      <option>Mets</option>
-                      <option>Nationals</option>
-                      <option>Orioles</option>
-                      <option>Padres</option>
-                      <option>Phillies</option>
-                      <option>Pirates</option>
-                      <option>Rangers</option>
-                      <option>Rays</option>
-                      <option>Red Sox</option>
-                      <option>Reds</option>
-                      <option>Rockies</option>
-                      <option>Royals</option>
-                      <option>Tigers</option>
-                      <option>Twins</option>
-                      <option>White Sox</option>
-                      <option>Yankees</option>
-                    </select>
-                  </div>
-                  <button type="submit" id="pickSubmit" class="btn btn-warning">Submit</button>
-            </form><br>
-            {{#message}}
-            <div class="alert alert-info col-6 offset-3" style="text-align: center;" role="alert">
-                {{message}} 
-            </div> 
-            {{/message}}
-          </div>
+{{> nav}}
+{{#alert}}
+<div class="alert alert-success" style="text-align: center" role="alert">
+  {{ alert }}
+</div>
+{{/alert}}
+{{#warning}}
+<div class="alert alert-danger" style="text-align: center" role="alert">
+  {{ warning }}
+</div>
+{{/warning}}
+<div class="card-deck col-12">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Team Select</h5>
+      <form class="pickSubmit" method="POST">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Picking for Week 6</label>
+          <select
+            class="form-control"
+            name="pick"
+            id="exampleFormControlSelect1"
+          >
+            <option disabled>Select...</option>
+            <option>Angels</option>
+            <option>Astros</option>
+            <option>Athletics</option>
+            <option>Blue Jays</option>
+            <option>Braves</option>
+            <option>Brewers</option>
+            <option>Cardinals</option>
+            <option>Cubs</option>
+            <option>Diamondbacks</option>
+            <option>Dodgers</option>
+            <option>Giants</option>
+            <option>Guardians</option>
+            <option>Mariners</option>
+            <option>Marlins</option>
+            <option>Mets</option>
+            <option>Nationals</option>
+            <option>Orioles</option>
+            <option>Padres</option>
+            <option>Phillies</option>
+            <option>Pirates</option>
+            <option>Rangers</option>
+            <option>Rays</option>
+            <option>Red Sox</option>
+            <option>Reds</option>
+            <option>Rockies</option>
+            <option>Royals</option>
+            <option>Tigers</option>
+            <option>Twins</option>
+            <option>White Sox</option>
+            <option>Yankees</option>
+          </select>
         </div>
-        <div class="card">
-            {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
-            <div class="card-body">
-              <h3 class="card-title">Active Players</h3>
-              <h1 class="activePlayers">4</h1><br>
-              <h5 style="color: red;">⬇ 146 From Week 1</h5>
-              <h5 style="color: red;">⬇ 28 From last week</h5>
-          </div>
-        </div>
-        <div class="card">
-          {{! <img class="card-img-top" src="..." alt="Card image cap"> }}
-          <div class="card-body">
-            <h5 class="card-title">Past Picks (By Week):</h5>
-                <ol style="text-align: left">
-                  {{#picksResult}}
-                    <li>{{.}}</li>
-                    {{/picksResult}}
-                </ol>
-          </div>
-        </div>
+        <button type="submit" id="pickSubmit" class="btn btn-warning">
+          Submit
+        </button>
+      </form>
+      <br />
+      {{#message}}
+      <div
+        class="alert alert-info col-6 offset-3"
+        style="text-align: center"
+        role="alert"
+      >
+        {{ message }}
+      </div>
+      {{/message}}
+    </div>
   </div>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Active Players</h3>
+      {{#userCount}}
+      <h1 class="activePlayers" id="totalUsers">{{ userCount }}</h1>
+      <br />
+      {{/userCount}}
+      <h5 style="color: red">⬇ 146 From Week 1</h5>
+      <h5 style="color: red">⬇ 28 From last week</h5>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Past Picks (By Week):</h5>
+      <ol style="text-align: left">
+        {{#picksResult}}
+        <li>{{.}}</li>
+        {{/picksResult}}
+      </ol>
+    </div>
+  </div>
+</div>
 
-    <script>
-if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
-}
+<script>
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
 </script>
+<script src="js/userCount.js"></script>
 
 {{> footer}}

@@ -10,6 +10,10 @@ router.get('/thankyou', (req, res) => {
     res.render('thankyou');
 })
 
+router.get('/rules', (req,res) => {
+  res.render('rules');
+});
+
 
 
 module.exports = router;
