@@ -17,6 +17,12 @@ body {
   background-blend-mode: hard-light;
 }
 
+.scheduleContainer {
+  background-image: url("/assets/baseballDark.jpg");
+  background-color: black;
+  background-blend-mode: hard-light;
+}
+
 .splashContainer {
   margin-top: 300px;
   color: white;
@@ -72,3 +78,4 @@ body {
   margin-top: 300px;
   color: white;
 }
+
