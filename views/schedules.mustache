@@ -1,7 +1,59 @@
 {{> header}}
 {{> nav}}
 
-<h1 style="color: white">HELLO WORLD</h1>
+<h1 style="color: white">HELLO WORLD, {{ teams }}</h1>
 
+
+
+<form class="scheduleSelect col-4 offset-1" method="POST">
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select a Team to see their schedule</label>
+    <select
+      class="form-control"
+      name="team"
+      id="exampleFormControlSelect1">
+      <option disabled>Select...</option>
+      <option>Angels</option>
+      <option>Astros</option>
+      <option>Athletics</option>
+      <option>Blue Jays</option>
+      <option>Braves</option>
+      <option>Brewers</option>
+      <option>Cardinals</option>
+      <option>Cubs</option>
+      <option>Diamondbacks</option>
+      <option>Dodgers</option>
+      <option>Giants</option>
+      <option>Guardians</option>
+      <option>Mariners</option>
+      <option>Marlins</option>
+      <option>Mets</option>
+      <option>Nationals</option>
+      <option>Orioles</option>
+      <option>Padres</option>
+      <option>Phillies</option>
+      <option>Pirates</option>
+      <option>Rangers</option>
+      <option>Rays</option>
+      <option>Red Sox</option>
+      <option>Reds</option>
+      <option>Rockies</option>
+      <option>Royals</option>
+      <option>Tigers</option>
+      <option>Twins</option>
+      <option>White Sox</option>
+      <option>Yankees</option>
+    </select>
+  </div>
+  <button type="submit" id="pickSubmit" class="btn btn-warning">
+    Submit
+  </button>
+</form>
+
+<script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 
 {{> footer}}
