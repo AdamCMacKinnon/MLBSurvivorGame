@@ -30,6 +30,7 @@ app.use(express.static('public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/rules'));
 app.use(require('./routes/gamepage'));
+app.use(require('./routes/admin/index'));
 app.use(require('./routes/users/login'));
 app.use(require('./routes/users/register'));
 app.use(require('./routes/users/passwordreset'));
