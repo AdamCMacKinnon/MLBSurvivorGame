@@ -8,7 +8,7 @@
             <label for="username">Twitter Handle</label>
             <div class="input-group-prepend">
                 <div class="input-group-text">@</div>
-                <input name="username" type="text" class="form-control" placeholder="RMNTCBASEBALL">
+                <input name="username" type="text" class="form-control" placeholder="Case Sensitive!">
               </div>
           </div>
           <label for="email">Email</label>
@@ -17,8 +17,7 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password">
           </div>
-          {{! <button type="submit" id="submitReg" class="btn btn-warning">Submit</button> }}
-          <p style="text-align: center;">We are no longer accepting signups at this time!</p>
+          <button type="submit" id="submitReg" class="btn btn-warning">Submit</button>
         </form>
 
         {{#message}}
@@ -27,4 +26,10 @@
         </div> 
         {{/message}}
 
+        
+        <script>
+        if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+        </script>
 {{> footer}}

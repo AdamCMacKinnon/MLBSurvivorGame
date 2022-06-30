@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   picks.init({
-    userid: DataTypes.INTEGER,
+    userid: DataTypes.UUID,
     username: DataTypes.STRING,
-    picks: DataTypes.ARRAY(DataTypes.TEXT)
+    picks: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     sequelize,
     modelName: 'picks',

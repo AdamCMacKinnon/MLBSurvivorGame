@@ -2,39 +2,60 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 const models = require("../models");
-const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
+const authorization = require("../auth/authorization");
 
-router.get("/gamepage", async (req, res) => {
+router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
   let isactive = req.session.isactive;
   let user = req.session.username;
 
-  if (!userid || userid === undefined) {
-    res.status(400).json({
-      status_code: 0,
-      error_msg: "you are not logged in!, please log in to continue",
-    });
-  } else {
-    const picksArr = await models.picks.findAll({
-      where: {
-        userid: userid,
-      },
-      attributes: ["picks"],
-      raw: true,
-    });
-    let result = picksArr.map((p) => p.picks);
-    const picksResult = result[0];
+  const totalUsers = await models.users.findOne({
+    where: {
+      isactive: true,
+    },
+    attributes: [sequelize.fn("COUNT", sequelize.col("username"))],
+    raw: true,
+  });
+  const userCount = Object.values(totalUsers).toString();
+
+  const picksArr = await models.picks.findAll({
+    where: {
+      userid: userid,
+    },
+    attributes: ["picks"],
+    raw: true,
+  });
+  let result = picksArr.map((p) => p.picks);
+  const picksResult = result[0];
+
+  function setKey(picksResult) {
+    if (picksResult.length > 0) {
+      let fullObj = "pick: " + picksResult;
+      return fullObj;
+    }
   }
+  const picksList = function (picksResult) {
+    if (picksResult === null || undefined) {
+      return null;
+    } else {
+      let picks = picksResult.map(setKey);
+      return picks;
+    }
+  };
 
   if (isactive === true) {
     res.render("gamepage", {
-      alert: `Hello ${user}, You are currently ACTIVE`,
+      alert: `Hello ${user.toUpperCase()}, You are currently ACTIVE`,
+      picksResult,
+      userCount,
     });
   } else {
     res.render("gamepage", {
-      alert: `Hello ${user}, you have been ELIMINATED`,
+      warning: `Hello ${user.toUpperCase()}, you have been ELIMINATED`,
+      picksResult,
+      userCount,
     });
   }
 });
@@ -44,23 +65,40 @@ router.post("/gamepage", async (req, res) => {
   const status = req.session.isactive;
   const userid = req.session.id;
   const userpick = [req.body.pick];
-
-  if (!userid || userid === undefined) {
-    res.render("gamepage", {
-      alert: "you are not logged in!, please login to continue.",
-    });
-  } else {
-    const picksArr = await models.picks.findAll({
-      where: {
-        userid: userid,
-      },
-      attributes: ["picks"],
-      raw: true,
-    });
-    const result = picksArr.map((p) => p.picks);
+  const picksArr = await models.picks.findAll({
+    where: {
+      userid: userid,
+    },
+    attributes: ["picks"],
+    raw: true,
+  });
+  let result = picksArr.map((p) => p.picks);
+  let picksResult = result[0];
+  if (picksResult === undefined) {
+    picksResult = "";
   }
+
+  const totalUsers = await models.users.findOne({
+    where: {
+      isactive: true,
+    },
+    attributes: [sequelize.fn("COUNT", sequelize.col("username"))],
+    raw: true,
+  });
+  const userCount = Object.values(totalUsers).toString();
+
   if (status === false) {
-    res.render("gamepage", { message: "Sorry, you have been eliminated!" });
+    res.render("gamepage", {
+      message: "Sorry, you have been eliminated",
+      picksResult,
+      userCount,
+    });
+  } else if (picksResult.includes(userpick.toString())) {
+    res.render("gamepage", {
+      message: "you've already picked that team!",
+      picksResult,
+      userCount,
+    });
   } else {
     let findId = await models.picks.findOne({
       where: {
@@ -82,7 +120,11 @@ router.post("/gamepage", async (req, res) => {
           },
         }
       );
-      res.render("gamepage", { message: `Week 6 Pick: ${userpick}` });
+      res.render("gamepage", {
+        message: `Current Pick: ${userpick}`,
+        picksResult,
+        userCount,
+      });
     } else {
       let pick = models.picks.build({
         userid: userid,
@@ -91,9 +133,11 @@ router.post("/gamepage", async (req, res) => {
       });
       let savedPick = await pick.save();
       if (savedPick != null) {
-        res.render("gamepage", { message: `Week 6 Pick: ${userpick}` });
-      } else {
-        comparePicks(userpick, userid);
+        res.render("gamepage", {
+          message: `Current Pick: ${userpick}`,
+          picksResult,
+          userCount,
+        });
       }
     }
   }
@@ -104,21 +148,5 @@ router.post("/logout", (req, res) => {
     res.redirect("/", { message: "you have been logged out" });
   });
 });
-
-async function comparePicks(userid, userpick) {
-  const picksArr = await models.picks.findAll({
-    where: {
-      userid: userid,
-    },
-    attributes: ["picks"],
-    raw: true,
-  });
-  const result = picksArr.map((p) => p.picks);
-  for (let p = 0; p < result.length; p++) {
-    if (p === userpick) {
-      return true;
-    }
-  }
-}
 
 module.exports = router;
