@@ -90,3 +90,7 @@ body {
 .twitter-timeline {
   flex: 0 0 auto;
 }
+
+#twitterCard {
+  opacity: 1;
+}
