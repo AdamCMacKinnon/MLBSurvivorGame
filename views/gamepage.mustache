@@ -18,68 +18,67 @@
 </div>
 {{/userCount}}
 
-<div class="card mb-3 col-10 offset-1 opacity-50">
-  <div class="card-body">
-    <h5 class="card-title">Team Select</h5>
-    <form class="pickSubmit" method="POST">
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Select your team (ONLY PICK ONCE PER WEEK):</label>
-        <select
-          class="form-control"
-          name="pick"
-          id="exampleFormControlSelect1"
-        >
-          <option disabled>Select...</option>
-          <option>Angels</option>
-          <option>Astros</option>
-          <option>Athletics</option>
-          <option>Blue Jays</option>
-          <option>Braves</option>
-          <option>Brewers</option>
-          <option>Cardinals</option>
-          <option>Cubs</option>
-          <option>Diamondbacks</option>
-          <option>Dodgers</option>
-          <option>Giants</option>
-          <option>Guardians</option>
-          <option>Mariners</option>
-          <option>Marlins</option>
-          <option>Mets</option>
-          <option>Nationals</option>
-          <option>Orioles</option>
-          <option>Padres</option>
-          <option>Phillies</option>
-          <option>Pirates</option>
-          <option>Rangers</option>
-          <option>Rays</option>
-          <option>Red Sox</option>
-          <option>Reds</option>
-          <option>Rockies</option>
-          <option>Royals</option>
-          <option>Tigers</option>
-          <option>Twins</option>
-          <option>White Sox</option>
-          <option>Yankees</option>
-        </select>
+<div class="card-deck col-12">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Team Select</h5>
+      <form class="pickSubmit" method="POST">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select your team (ONLY PICK ONCE PER WEEK):</label>
+          <select
+            class="form-control"
+            name="pick"
+            id="exampleFormControlSelect1"
+          >
+            <option disabled>Select...</option>
+            <option>Angels</option>
+            <option>Astros</option>
+            <option>Athletics</option>
+            <option>Blue Jays</option>
+            <option>Braves</option>
+            <option>Brewers</option>
+            <option>Cardinals</option>
+            <option>Cubs</option>
+            <option>Diamondbacks</option>
+            <option>Dodgers</option>
+            <option>Giants</option>
+            <option>Guardians</option>
+            <option>Mariners</option>
+            <option>Marlins</option>
+            <option>Mets</option>
+            <option>Nationals</option>
+            <option>Orioles</option>
+            <option>Padres</option>
+            <option>Phillies</option>
+            <option>Pirates</option>
+            <option>Rangers</option>
+            <option>Rays</option>
+            <option>Red Sox</option>
+            <option>Reds</option>
+            <option>Rockies</option>
+            <option>Royals</option>
+            <option>Tigers</option>
+            <option>Twins</option>
+            <option>White Sox</option>
+            <option>Yankees</option>
+          </select>
+        </div>
+        <button type="submit" id="pickSubmit" class="btn btn-warning">
+          Submit
+        </button>
+      </form>
+      <br />
+      {{#message}}
+      <div
+        class="alert alert-info col-6 offset-3"
+        style="text-align: center"
+        role="alert">
+        {{ message }}
       </div>
-      <button type="submit" id="pickSubmit" class="btn btn-warning">
-        Submit
-      </button>
-    </form>
-    <br />
-    {{#message}}
-    <div
-      class="alert alert-info col-6 offset-3"
-      style="text-align: center"
-      role="alert">
-      {{ message }}
+      {{/message}}
     </div>
-    {{/message}}
   </div>
-</div>
-  </div>
-
-  <div class="card mb-3 col-10 offset-1">
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title">Past Picks (By Week):</h5>
       <ol style="text-align: left">
@@ -88,11 +87,12 @@
         {{/picksResult}}
       </ol>
     </div>
-    </div>
-
-  <div class="news col-10 offset-1">
-    <a class="twitter-timeline" data-height="450" data-width="100%" data-theme="dark" href="https://twitter.com/league_mlb?ref_src=twsrc%5Etfw"><h4>Tweets by league_mlb</h4></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
+  <div class="card" id="twitterCard">
+    <a class="twitter-timeline" data-height="100%" data-width="100%" data-theme="dark" href="https://twitter.com/league_mlb?ref_src=twsrc%5Etfw"><h4>Tweets by league_mlb</h4></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+</div>
 
 <script>
   if (window.history.replaceState) {

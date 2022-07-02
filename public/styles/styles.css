@@ -51,6 +51,8 @@ body {
 
 /* GAME PAGE STYLES */
 
+
+
 .card {
   background-color: rgb(0, 43, 15);
   color: white;
@@ -63,7 +65,7 @@ body {
   text-align: left;
 }
 .activePlayers {
-  font-size: 80px;
+  font-size: 100px;
 }
 #lowerCard {
   margin-top: 20px;
@@ -75,18 +77,11 @@ body {
   color: white;
 }
 
-.news {
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-
-.news {
-  width: 100vw;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-}
 
 .twitter-timeline {
   flex: 0 0 auto;
+}
+
+#twitterCard {
+  opacity: 1;
 }
