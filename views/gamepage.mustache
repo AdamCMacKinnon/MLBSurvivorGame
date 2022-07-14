@@ -20,6 +20,12 @@
 
 <div class="card-deck col-12">
   <div class="card">
+    <h5 class="card-title">CURRENT PICK:</h5>
+    {{#thisTeam}}
+   <h1>{{thisTeam}}</h1>
+    {{/thisTeam}}
+</div>
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title">Team Select</h5>
       <form class="pickSubmit" method="POST">
@@ -28,9 +34,9 @@
           <select
             class="form-control"
             name="pick"
-            id="exampleFormControlSelect1"
-          >
-            <option disabled>Select...</option>
+            id="teamSelect"
+            value="value">
+            <option>Select...</option>
             <option>Angels</option>
             <option>Astros</option>
             <option>Athletics</option>
@@ -88,10 +94,6 @@
       </ol>
     </div>
   </div>
-  <div class="card" id="twitterCard">
-    <a class="twitter-timeline" data-height="100%" data-width="100%" data-theme="dark" href="https://twitter.com/league_mlb?ref_src=twsrc%5Etfw"><h4>Tweets by league_mlb</h4></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -100,5 +102,13 @@
   }
 </script>
 <script src="js/userCount.js"></script>
+
+<script>
+  const img = document.getElementById("image");
+  const teamSelect = document.getElementById("pickSubmit").value;
+  const source = `/assets/teamlogos/${teamSelect}.svg`
+  img.src = source;
+  console.log(source)
+</script>
 
 {{> footer}}
