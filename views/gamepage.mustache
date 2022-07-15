@@ -73,15 +73,6 @@
           Submit
         </button>
       </form>
-      <br />
-      {{#message}}
-      <div
-        class="alert alert-info col-6 offset-3"
-        style="text-align: center"
-        role="alert">
-        {{ message }}
-      </div>
-      {{/message}}
     </div>
   </div>
   <div class="card">
@@ -95,6 +86,15 @@
     </div>
   </div>
 </div>
+
+{{#message}}
+<div class="alert alert-info col-4 offset-4"
+  style="text-align: center"
+  id = "pickBox"
+  role="alert">
+  {{ message }}
+</div>
+{{/message}}
 
 <script>
   if (window.history.replaceState) {
