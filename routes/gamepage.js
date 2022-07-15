@@ -5,6 +5,7 @@ const models = require("../models");
 const { sequelize } = require("../models");
 const { TEXT } = require("sequelize");
 const authorization = require("../auth/authorization");
+const AmazonS3URI = require('amazon-s3-uri');
 
 router.get("/gamepage", authorization, async (req, res) => {
   let userid = req.session.id;
@@ -45,11 +46,17 @@ router.get("/gamepage", authorization, async (req, res) => {
     }
   };
 
+  const teamSelect = result.toString().split(",");
+  const thisTeam = teamSelect[teamSelect.length -1];
+  const teamImage = `/assets/teamlogos/Diamondbacks.svg`;
+  console.log(teamImage)
+
   if (isactive === true) {
     res.render("gamepage", {
       alert: `Hello ${user.toUpperCase()}, You are currently ACTIVE`,
       picksResult,
       userCount,
+      thisTeam
     });
   } else {
     res.render("gamepage", {

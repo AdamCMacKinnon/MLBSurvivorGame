@@ -85,3 +85,9 @@ body {
 #twitterCard {
   opacity: 1;
 }
+
+#pickBox {
+  margin-top: 25px;
+  font-size: x-large;
+  font-weight: bold;
+}
