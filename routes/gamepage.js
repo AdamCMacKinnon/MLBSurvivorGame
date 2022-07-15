@@ -47,9 +47,9 @@ router.get("/gamepage", authorization, async (req, res) => {
   };
 
   const teamSelect = result.toString().split(",");
-  console.log(teamSelect);
   const thisTeam = teamSelect[teamSelect.length -1];
-  console.log(thisTeam);
+  const teamImage = `/assets/teamlogos/Diamondbacks.svg`;
+  console.log(teamImage)
 
   if (isactive === true) {
     res.render("gamepage", {
